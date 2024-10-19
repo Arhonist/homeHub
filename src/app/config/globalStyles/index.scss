@@ -1,0 +1,36 @@
+@import '../../../../node_modules/gardevoir';
+
+@import 'colors';
+@import 'fonts';
+
+*,
+:before,
+:after {
+    font-family: var(--font-arial);
+    margin: 0;
+    padding: 0;
+}
+
+/* stylelint-disable */
+html {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+}
+
+html,
+body {
+    height: 100%;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}
+/* stylelint-enable */
+
+#root {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    min-height: 100%;
+}

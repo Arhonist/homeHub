@@ -1,0 +1,28 @@
+.error {
+    color: orangered;
+}
+
+.controlsRow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.readings {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.reading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.lastResult {
+    margin: 0 auto;
+    width: fit-content;
+}

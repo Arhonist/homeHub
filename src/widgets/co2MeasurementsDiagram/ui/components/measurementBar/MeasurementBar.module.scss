@@ -1,0 +1,30 @@
+.fullBar {
+    position: relative;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 10px;
+}
+
+.filament {
+    width: 100%;
+}
+
+.ppmValue,
+.time {
+    position: absolute;
+    font-size: 12px;
+}
+
+.ppmValue {
+    bottom: -16px;
+    left: -10px;
+    transform: rotate(-35deg);
+}
+
+.time {
+    bottom: 12px;
+    left: -8px;
+    transform: rotate(-90deg);
+}
