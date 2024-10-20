@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react';
-import { Co2Measurement } from '@/entities/co2Measurement';
+import { Measurement } from '@/entities/measurement';
 import { getCo2LevelByPpmValue } from '@/shared/lib/getFontColorByCo2Level/getCo2LevelByPpmValue.ts';
 import { co2ColorByLevel } from '@/shared/const/Co2ColorByLevel.ts';
 import styles from './Co2MeasurementDetails.module.scss';
 
 interface Props {
-    measurement?: Co2Measurement;
+    measurement?: Measurement;
 }
 
 export const Co2MeasurementDetails: FunctionComponent<Props> = ({ measurement }) => {
@@ -13,13 +13,13 @@ export const Co2MeasurementDetails: FunctionComponent<Props> = ({ measurement })
         return null;
     }
 
-    const { ppmValue } = measurement;
+    const { co2PPMValue } = measurement;
 
-    const fontColor = co2ColorByLevel[getCo2LevelByPpmValue(ppmValue)];
+    const fontColor = co2ColorByLevel[getCo2LevelByPpmValue(co2PPMValue)];
 
     return (
         <span className={styles.result} style={{ color: fontColor }}>
-            {ppmValue} ppm
+            {co2PPMValue} ppm
         </span>
     );
 };

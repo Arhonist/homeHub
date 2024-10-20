@@ -1,22 +1,22 @@
 import { FunctionComponent, useRef, useState } from 'react';
-import styles from './SerialMonitor.module.scss';
-import Spacing from '../../shared/ui/spacing/Spacing.tsx';
-import Button from '../../shared/ui/button/Button.tsx';
+import Spacing from '@/shared/ui/spacing/Spacing.tsx';
+import Button from '@/shared/ui/button/Button.tsx';
 import { Co2MeasurementDetails } from '@/features/co2MeasurementDetails';
 import { Co2MeasurementsDiagram } from '@/widgets/co2MeasurementsDiagram';
-
-interface Reading {
-    ppmValue: number;
-    date: number;
-}
+import { useMeasurementState, useMeasurementStoreActions } from '@/entities/measurement';
+import styles from './SerialMonitor.module.scss';
 
 const SerialMonitor: FunctionComponent = () => {
-    const [readings, setReadings] = useState<Reading[]>([]);
+    const { measurements } = useMeasurementState();
+    const { addMeasurement } = useMeasurementStoreActions();
+
     const [errorText, setErrorText] = useState<string | undefined>();
     const [isPolling, setIsPolling] = useState(false);
 
     const readerRef = useRef<ReadableStreamDefaultReader>(); // Чтобы сохранить доступ к reader при остановке
     const portRef = useRef<SerialPort>(); // Чтобы сохранить доступ к reader при остановке
+
+    const lastMeasurement = measurements ? measurements[measurements.length - 1] : undefined;
 
     const startPolling = async () => {
         setIsPolling(true);
@@ -52,10 +52,7 @@ const SerialMonitor: FunctionComponent = () => {
 
                 if (isEndOfMessage) {
                     const chunkToAdd = readingChunk;
-                    setReadings((prevReadings) => [
-                        ...prevReadings,
-                        { ppmValue: Number(chunkToAdd), date: Date.now() }
-                    ]);
+                    addMeasurement({ co2PPMValue: Number(chunkToAdd), date: Date.now() });
                     readingChunk = '';
                 } else {
                     readingChunk += decodedValue;
@@ -93,14 +90,14 @@ const SerialMonitor: FunctionComponent = () => {
             <Spacing size={12} />
 
             <div className={styles.lastResult}>
-                <Co2MeasurementDetails measurement={readings[readings.length - 1]} />
+                <Co2MeasurementDetails measurement={lastMeasurement} />
             </div>
 
             <Spacing size={12} />
 
             {Boolean(errorText) && <p className={styles.error}>{errorText}</p>}
 
-            <Co2MeasurementsDiagram measurements={readings} />
+            <Co2MeasurementsDiagram measurements={measurements} />
         </div>
     );
 };
