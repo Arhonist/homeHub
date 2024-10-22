@@ -1,4 +1,4 @@
-export const enum Co2Level {
+export const enum MeasurementQuality {
     EXCELLENT = 'excellent',
     GOOD = 'good',
     MEDIOCRE = 'mediocre',

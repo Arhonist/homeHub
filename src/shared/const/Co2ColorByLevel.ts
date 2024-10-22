@@ -1,9 +1,9 @@
-import { Co2Level } from '@/shared/enum/Co2Level.ts';
+import { MeasurementQuality } from '@/shared/enum/MeasurementQuality.ts';
 
-export const co2ColorByLevel: Record<Co2Level, string> = {
-    [Co2Level.EXCELLENT]: '#00ff04',
-    [Co2Level.GOOD]: '#75ab2b',
-    [Co2Level.MEDIOCRE]: '#e3980e',
-    [Co2Level.BAD]: '#ed3107',
-    [Co2Level.TERRIBLE]: '#5e0909'
+export const co2ColorByLevel: Record<MeasurementQuality, string> = {
+    [MeasurementQuality.EXCELLENT]: '#00ff04',
+    [MeasurementQuality.GOOD]: '#75ab2b',
+    [MeasurementQuality.MEDIOCRE]: '#e3980e',
+    [MeasurementQuality.BAD]: '#ed3107',
+    [MeasurementQuality.TERRIBLE]: '#5e0909'
 };

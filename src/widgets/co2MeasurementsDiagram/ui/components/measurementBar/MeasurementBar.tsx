@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Measurement } from '@/entities/measurement';
 import styles from './MeasurementBar.module.scss';
 import { co2ColorByLevel } from '@/shared/const/Co2ColorByLevel.ts';
-import { getCo2LevelByPpmValue } from '@/shared/lib/getFontColorByCo2Level/getCo2LevelByPpmValue.ts';
+import { getMeasurementQuality } from '@/shared/lib/getFontColorByCo2Level/getCo2QualityByValue.ts';
 import dayjs from 'dayjs';
 import DateTimeFormat from '@/shared/enum/DateTimeFormat.ts';
 
@@ -16,7 +16,8 @@ interface Props {
 export const MeasurementBar: FunctionComponent<Props> = ({ measurement }) => {
     const { co2PPMValue, date } = measurement;
 
-    const backgroundColor = co2ColorByLevel[getCo2LevelByPpmValue(co2PPMValue)];
+    const { co2PPMValue: co2MeasurementQuality } = getMeasurementQuality(measurement);
+    const backgroundColor = co2ColorByLevel[co2MeasurementQuality];
     const time = dayjs(date).format(DateTimeFormat.HOUR_MINUTE_24H);
 
     return (

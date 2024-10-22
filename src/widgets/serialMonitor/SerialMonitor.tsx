@@ -3,7 +3,7 @@ import Spacing from '@/shared/ui/spacing/Spacing.tsx';
 import Button from '@/shared/ui/button/Button.tsx';
 import { Co2MeasurementDetails } from '@/features/co2MeasurementDetails';
 import { Co2MeasurementsDiagram } from '@/widgets/co2MeasurementsDiagram';
-import { useMeasurementState, useMeasurementStoreActions } from '@/entities/measurement';
+import { Measurement, useMeasurementState, useMeasurementStoreActions } from '@/entities/measurement';
 import styles from './SerialMonitor.module.scss';
 
 const SerialMonitor: FunctionComponent = () => {
@@ -52,7 +52,26 @@ const SerialMonitor: FunctionComponent = () => {
 
                 if (isEndOfMessage) {
                     const chunkToAdd = readingChunk;
-                    addMeasurement({ co2PPMValue: Number(chunkToAdd), date: Date.now() });
+
+                    const { co2PPMValue, humidity, temperature } = chunkToAdd.split(';').reduce(
+                        (acc, pair) => {
+                            const [key, value] = pair.split(':');
+                            return { ...acc, [key]: Number(value) };
+                        },
+                        {
+                            co2PPMValue: undefined,
+                            humidity: undefined,
+                            temperature: undefined
+                        }
+                    ) as unknown as Measurement;
+
+                    document.title = `${co2PPMValue} CO2 | ${temperature} °C | ${humidity} %`;
+                    addMeasurement({
+                        co2PPMValue: co2PPMValue,
+                        humidity: humidity,
+                        temperature: temperature,
+                        date: Date.now()
+                    });
                     readingChunk = '';
                 } else {
                     readingChunk += decodedValue;
@@ -89,9 +108,7 @@ const SerialMonitor: FunctionComponent = () => {
 
             <Spacing size={12} />
 
-            <div className={styles.lastResult}>
-                <Co2MeasurementDetails measurement={lastMeasurement} />
-            </div>
+            <Co2MeasurementDetails measurement={lastMeasurement} />
 
             <Spacing size={12} />
 
