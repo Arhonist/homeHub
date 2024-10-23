@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import { Measurement } from '@/entities/measurement';
-import { co2ColorByLevel } from '@/shared/const/Co2ColorByLevel.ts';
+import { colorByMeasurementQuality } from '@/shared/const/ColorByMeasurementQuality.ts';
 import styles from './Co2MeasurementDetails.module.scss';
-import { getMeasurementQuality } from '@/shared/lib/getFontColorByCo2Level/getCo2QualityByValue.ts';
+import { getMeasurementQuality } from '@/shared/lib/getMeasurementQuality/getMeasurementQuality.ts';
 
 interface Props {
     measurement?: Measurement;
@@ -15,14 +15,10 @@ export const Co2MeasurementDetails: FunctionComponent<Props> = ({ measurement })
 
     const { co2PPMValue, temperature, humidity } = measurement;
 
-    const {
-        co2PPMValue: co2Quality,
-        temperature: temperatureQuality,
-        humidity: humidityQuality
-    } = getMeasurementQuality(measurement);
-    const co2FontColor = co2ColorByLevel[co2Quality];
-    const temperatureFontColor = co2ColorByLevel[temperatureQuality];
-    const humidityFontColor = co2ColorByLevel[humidityQuality];
+    const { co2Quality, temperatureQuality, humidityQuality } = getMeasurementQuality(measurement);
+    const co2FontColor = colorByMeasurementQuality[co2Quality];
+    const temperatureFontColor = colorByMeasurementQuality[temperatureQuality];
+    const humidityFontColor = colorByMeasurementQuality[humidityQuality];
 
     return (
         <div className={styles.wrapper}>

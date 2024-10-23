@@ -49,12 +49,8 @@ const getHumidityQualityByValue = (humidity: number): MeasurementQuality => {
     return MeasurementQuality.EXCELLENT;
 };
 
-export const getMeasurementQuality = ({
-    co2PPMValue,
-    temperature,
-    humidity
-}: Measurement): Record<keyof Omit<Measurement, 'date'>, MeasurementQuality> => ({
-    co2PPMValue: getCo2QualityByValue(co2PPMValue),
-    temperature: getTemperatureQualityByValue(temperature),
-    humidity: getHumidityQualityByValue(humidity)
+export const getMeasurementQuality = ({ co2PPMValue, temperature, humidity }: Measurement) => ({
+    co2Quality: getCo2QualityByValue(co2PPMValue),
+    temperatureQuality: getTemperatureQualityByValue(temperature),
+    humidityQuality: getHumidityQualityByValue(humidity)
 });

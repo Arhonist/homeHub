@@ -4,27 +4,49 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 10px;
+    width: 2px;
 }
 
 .filament {
     width: 100%;
 }
 
-.ppmValue,
-.time {
+.co2PPMValue,
+.time,
+.temperature,
+.humidity {
     position: absolute;
     font-size: 12px;
 }
 
-.ppmValue {
-    bottom: -16px;
-    left: -10px;
+.co2PPMValue,
+.temperature,
+.humidity {
     transform: rotate(-35deg);
+}
+
+.co2PPMValue {
+    bottom: -16px;
+    left: -6px;
+}
+
+.temperature {
+    bottom: -38px;
+    left: -6px;
+}
+
+.humidity {
+    bottom: -60px;
+    left: -1px;
 }
 
 .time {
     bottom: 12px;
-    left: -8px;
-    transform: rotate(-90deg);
+
+    &:after {
+        content: ':';
+        position: absolute;
+        bottom: 7px;
+        right: -5px;
+    }
 }

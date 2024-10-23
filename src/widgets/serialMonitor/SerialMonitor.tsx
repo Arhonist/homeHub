@@ -1,10 +1,9 @@
 import { FunctionComponent, useRef, useState } from 'react';
-import Spacing from '@/shared/ui/spacing/Spacing.tsx';
-import Button from '@/shared/ui/button/Button.tsx';
 import { Co2MeasurementDetails } from '@/features/co2MeasurementDetails';
 import { Co2MeasurementsDiagram } from '@/widgets/co2MeasurementsDiagram';
 import { Measurement, useMeasurementState, useMeasurementStoreActions } from '@/entities/measurement';
 import styles from './SerialMonitor.module.scss';
+import { Button, Spacing } from '@/shared/ui/components';
 
 const SerialMonitor: FunctionComponent = () => {
     const { measurements } = useMeasurementState();

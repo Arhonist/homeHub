@@ -1,6 +1,6 @@
 import { MeasurementQuality } from '@/shared/enum/MeasurementQuality.ts';
 
-export const co2ColorByLevel: Record<MeasurementQuality, string> = {
+export const colorByMeasurementQuality: Record<MeasurementQuality, string> = {
     [MeasurementQuality.EXCELLENT]: '#00ff04',
     [MeasurementQuality.GOOD]: '#75ab2b',
     [MeasurementQuality.MEDIOCRE]: '#e3980e',

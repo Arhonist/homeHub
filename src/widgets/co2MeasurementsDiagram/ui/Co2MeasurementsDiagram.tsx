@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import { Measurement } from '@/entities/measurement';
 import styles from './Co2MeasurementsDiagram.module.scss';
 import { MeasurementBar } from '@/widgets/co2MeasurementsDiagram/ui/components/measurementBar/MeasurementBar.tsx';
-import Button from '@/shared/ui/button/Button.tsx';
+import { Button } from '@/shared/ui/components';
 
 interface Props {
     measurements?: Measurement[];
@@ -29,8 +29,8 @@ export const Co2MeasurementsDiagram: FunctionComponent<Props> = ({ measurements 
                 )}
             </div>
             <div className={styles.wrapper}>
-                {measurements.map((measurement) => (
-                    <MeasurementBar key={measurement.date} measurement={measurement} />
+                {measurements.map((measurement, index) => (
+                    <MeasurementBar key={measurement.date} measurement={measurement} index={index} />
                 ))}
             </div>
         </>
