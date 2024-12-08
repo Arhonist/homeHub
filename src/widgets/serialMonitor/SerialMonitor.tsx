@@ -1,6 +1,6 @@
 import { FunctionComponent, useRef, useState } from 'react';
 import { Co2MeasurementDetails } from '@/features/co2MeasurementDetails';
-import { Co2MeasurementsDiagram } from '@/widgets/co2MeasurementsDiagram';
+import { MeasurementsDiagram } from '../measurementsDiagram';
 import { Measurement, useMeasurementState, useMeasurementStoreActions } from '@/entities/measurement';
 import styles from './SerialMonitor.module.scss';
 import { Button, Spacing } from '@/shared/ui/components';
@@ -113,7 +113,7 @@ const SerialMonitor: FunctionComponent = () => {
 
             {Boolean(errorText) && <p className={styles.error}>{errorText}</p>}
 
-            <Co2MeasurementsDiagram measurements={measurements} />
+            <MeasurementsDiagram measurements={measurements} />
         </div>
     );
 };

@@ -1,10 +1,16 @@
 .fullBar {
+    // Keep synchronized with FULL_BAR_HEIGHT const in MeasurementBar
+    --full-bar-height: 200px;
+    --border: 1px solid rgba(255, 255, 255, 0.25);
+
     position: relative;
-    height: 150px;
+    height: var(--full-bar-height);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 2px;
+    border-top: var(--border);
+    border-bottom: var(--border);
 }
 
 .filament {
@@ -12,36 +18,22 @@
 }
 
 .co2PPMValue,
-.time,
-.temperature,
-.humidity {
+.time {
     position: absolute;
     font-size: 12px;
 }
 
-.co2PPMValue,
-.temperature,
-.humidity {
+.co2PPMValue {
     transform: rotate(-35deg);
 }
 
 .co2PPMValue {
-    bottom: -16px;
+    bottom: -22px;
     left: -6px;
-}
-
-.temperature {
-    bottom: -38px;
-    left: -6px;
-}
-
-.humidity {
-    bottom: -60px;
-    left: -1px;
 }
 
 .time {
-    bottom: 12px;
+    bottom: 0;
 
     &:after {
         content: ':';

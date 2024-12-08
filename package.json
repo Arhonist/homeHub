@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "gardevoir": "^1.0.0",
     "immer": "^10.1.1",

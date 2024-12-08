@@ -18,19 +18,15 @@ const getCo2QualityByValue = (ppmValue: number): MeasurementQuality => {
 };
 
 const getTemperatureQualityByValue = (temperature: number): MeasurementQuality => {
-    if (temperature < 20 || temperature > 27) {
+    if (temperature < 21 || temperature > 27) {
         return MeasurementQuality.TERRIBLE;
     }
 
-    if (temperature >= 20 && temperature <= 22) {
+    if ((temperature >= 21 && temperature < 23) || (temperature > 26 && temperature <= 27)) {
         return MeasurementQuality.MEDIOCRE;
     }
 
-    if (temperature > 22 && temperature < 25) {
-        return MeasurementQuality.EXCELLENT;
-    }
-
-    return MeasurementQuality.MEDIOCRE;
+    return MeasurementQuality.EXCELLENT;
 };
 
 const getHumidityQualityByValue = (humidity: number): MeasurementQuality => {

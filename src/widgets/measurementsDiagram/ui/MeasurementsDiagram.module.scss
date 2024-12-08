@@ -9,4 +9,13 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+    justify-content: space-between;
+}
+
+.tab {
+    cursor: pointer;
+}
+
+.activeMode {
+    text-decoration: underline;
 }

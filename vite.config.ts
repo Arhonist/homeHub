@@ -10,7 +10,7 @@ export default defineConfig({
             key: fs.readFileSync(path.resolve(__dirname, 'ssl/localhost-key.pem')),
             cert: fs.readFileSync(path.resolve(__dirname, 'ssl/localhost-cert.pem'))
         },
-        port: 3000 // Вы можете указать любой порт
+        port: 2950
     },
     plugins: [react(), tsAliasesSupportPlugin()]
 });
